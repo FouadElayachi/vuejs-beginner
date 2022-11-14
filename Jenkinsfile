@@ -22,8 +22,9 @@ pipeline {
 
     stage('Deploy') {
       steps {
+	sh 'docker rmi -f vueapp'
         sh 'docker build -t vueapp .'
-	sh 'docker run -d -p 80:8083 vueapp'
+	sh 'docker run -d -p 80:8083 --name vuejs-beginner vueapp'
       }
     }
   }
