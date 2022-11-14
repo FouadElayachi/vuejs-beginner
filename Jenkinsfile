@@ -25,7 +25,7 @@ pipeline {
 	sh 'docker ps | grep 8083 | grep -v grep | awk \'{print \$1}\' | xargs -r docker rm -f'
 	sh 'docker rmi -f vueapp'
         sh 'docker build -t vueapp .'
-	sh 'docker run -d -p 80:8083 --name vuejs-beginner vueapp'
+	sh 'docker run -d -p 8083:80 --name vuejs-beginner vueapp'
       }
     }
   }
