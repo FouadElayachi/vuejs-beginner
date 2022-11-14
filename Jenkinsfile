@@ -23,7 +23,7 @@ pipeline {
     stage('Deploy') {
       steps {
 	sh 'docker rmi -f vueapp'
-	sh 'docker ps | grep 8083 | grep -v grep | awk \'{print \$1}\' | xargs docker rm -f --no-run-if-empty'
+	sh 'docker ps | grep 8083 | grep -v grep | awk \'{print \$1}\' | xargs -r docker rm -f'
         sh 'docker build -t vueapp .'
 	sh 'docker run -d -p 80:8083 --name vuejs-beginner vueapp'
       }
