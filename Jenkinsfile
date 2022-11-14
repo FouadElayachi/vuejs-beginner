@@ -21,7 +21,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh 'docker cp /var/jenkins_home/workspace/cicd-vuejs/dist nginx:/usr/share/nginx/html'
+        sh 'docker cp /var/jenkins_home/workspace/cicd-vuejs/dist/* nginx:/usr/share/nginx/html'
         sh 'yarn run build'
       }
     }
