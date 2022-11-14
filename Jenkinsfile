@@ -15,7 +15,6 @@ pipeline {
             
     stage('Build') {
       steps {
-	sh 'yarn run clean'
         sh 'yarn run build'
       }
     }
