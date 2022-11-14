@@ -5,9 +5,9 @@ pipeline {
     
   stages {
         
-    stage('Install') {
+    stage('Prepare environment') {
       steps {
-        sh 'rm  yarn.lock'
+        sh 'rm yarn.lock'
 	sh 'yarn install'
       }
     }  
@@ -15,6 +15,14 @@ pipeline {
             
     stage('Build') {
       steps {
+	sh 'yarn run clean'
+        sh 'yarn run build'
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        sh 'docker cp jenkins:/var/jenkins_home/workspace/cicd-vuejs/dist /home/ec2-user'
         sh 'yarn run build'
       }
     }
