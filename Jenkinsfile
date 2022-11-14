@@ -22,7 +22,8 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh 'docker cp /var/jenkins_home/workspace/cicd-vuejs/dist/. nginx:/usr/share/nginx/html'
+        sh 'docker build -t vueapp .'
+	sh 'docker run -d -p 80:8083 vueapp'
       }
     }
   }
